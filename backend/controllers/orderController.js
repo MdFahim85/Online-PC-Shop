@@ -91,7 +91,7 @@ exports.deleteOrder = catchAsyncErrors(async(req,res,next)=>{
     if (!order){
         return next(new ErrorHander("Order not found with this ID",404));
     }
-    await order.remove();
+    await order.deleteOne({ _id: req.params.id });
     res.status(200).json({
         success:true,
     });

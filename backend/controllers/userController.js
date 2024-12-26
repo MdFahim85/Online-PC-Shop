@@ -170,7 +170,7 @@ exports.updateUserRole = catchAsyncErrors(async(req,res,next)=>{
         email:req.body.email,
         role:req.body.role,
     };
-    const user = await User.findByIdAndUpdate(req.user.id,newUserData,{
+    const user = await User.findByIdAndUpdate(req.params.id,newUserData,{
         new:true,
         runValidators:true,
         useFindAndModify:false,
@@ -183,13 +183,14 @@ exports.updateUserRole = catchAsyncErrors(async(req,res,next)=>{
 
 exports.deleteUser = catchAsyncErrors(async(req,res,next)=>{
     
-    const user = await User.findByIdAndUpdate(req.params.id);
+    const user = await User.findById(req.params.id);
+    console.log(user);
     if (!user)
         {
         return next(new ErrorHander(`No user found with this ID: ${req.params.id}`)
         );
     }
-        await user.remove();
+        await User.deleteOne({ _id: req.params.id });
     
     res.status(200).json({
         success:true,
