@@ -1,7 +1,13 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { CgMouse } from "react-icons/all";
 import "./Home.css";
-import Product from "./Product.js";
+import Product from "./ProductCard.js";
+import MetaData from "../layout/MetaData";
+import {getProduct} from "../../actions/productAction";
+import { clearErrors } from "../../actions/productAction";
+import {useDispatch, useSelector} from "react-redux";
+import Loader from "../layout/Loader/Loader";
+import {useAlert} from "react-alert";
 
 const product = {
   name: "GPU",
@@ -15,8 +21,25 @@ const product = {
 };
 
 const Home = () => {
+  const alert = useAlert();
+  const dispatch = useDispatch();
+  const {loading, products, error} = useSelector(state => state.products); 
+  useEffect(() => {
+    if(error){
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+    dispatch(getProduct());
+
+  },[dispatch,error,alert]);
   return (
     <Fragment>
+      {loading ? (
+        <Loader />
+
+      ) :  (  
+      <Fragment>
+      <MetaData title="Online PC Shop" />
       <div className="banner">
         <p>Welcome to Online Pc Shop</p>
         <h1>Find Your Desired Products below</h1>
@@ -29,15 +52,13 @@ const Home = () => {
       </div>
       <h2 className="homeHeading">Featured Products</h2>
       <div className="container" id="container">
-        <Product product={product} />
-        <Product product={product} />
-        <Product product={product} />
-        <Product product={product} />
-        <Product product={product} />
-        <Product product={product} />
-        <Product product={product} />
-        <Product product={product} />
+        {products && products.map((product) => 
+          <Product product={product} />)}
       </div>
+    </Fragment>)}
+
+
+
     </Fragment>
   );
 };
