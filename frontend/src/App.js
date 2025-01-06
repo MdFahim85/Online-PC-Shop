@@ -6,7 +6,7 @@ import React from "react";
 import Footer from "./component/layout/Footer/Footer.js";
 import Home from "./component/Home/Home.js";
 import Loader from "./component/layout/Loader/Loader.js";
-import ProductDetails from "./component/Product/ProductDetails.js";
+import ProductDetails from "./component/Product/ProductDetails";
 
 function App() {
   React.useEffect(() => {
@@ -21,6 +21,10 @@ function App() {
       <Header />
       <Route exact path="/" component={Home} />
       <Route exact path="/product/:id" component={ProductDetails} />
+      <Route exact path="/products" component={Products} />
+      <Route path="/products/:keyword" component={Products} />
+      <Route exact path="/search" component={Search} />
+      <Route exact path="/login" component={LoginSignUp} />
       <Footer />
     </Router>
   );
