@@ -9,17 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Loader from "../layout/Loader/Loader";
 import { useAlert } from "react-alert";
 
-const product = {
-  name: "GPU",
-  images: [
-    {
-      url: "https://www.bleepstatic.com/content/hl-images/2023/09/07/graphics-card.jpg",
-    },
-  ],
-  price: "50,000tk",
-  _id: "gpuId",
-};
-
 const Home = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
