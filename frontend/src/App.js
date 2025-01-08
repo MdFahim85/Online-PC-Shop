@@ -30,6 +30,17 @@ import { loadStripe } from "@stripe/stripe-js";
 import OrderSuccess from "./component/Cart/OrderSuccess.js";
 import MyOrders from "./component/Order/MyOrders.js";
 import OrderDetails from "./component/Order/OrderDetails.js";
+import Dashboard from "./component/Admin/Dashboard.js";
+import ProductList from "./component/Admin/ProductList.js";
+import NewProduct from "./component/Admin/NewProduct.js";
+import UpdateProduct from "./component/Admin/UpdateProduct.js";
+import OrderList from "./component/Admin/OrderList.js";
+import ProcessOrder from "./component/Admin/ProcessOrder.js";
+import UsersList from "./component/Admin/UsersList.js";
+import UpdateUser from "./component/Admin/UpdateUser.js";
+import ProductReviews from "./component/Admin/ProductReviews.js";
+import Contact from "./component/layout/Contact/Contact.js";
+import About from "./component/layout/About/About.js";
 function App() {
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
@@ -60,6 +71,8 @@ function App() {
       <Route exact path="/products" component={Products} />
       <Route path="/products/:keyword" component={Products} />
       <Route exact path="/search" component={Search} />
+      <Route exact path="/contact" component={Contact} />
+      <Route exact path="/about" component={About} />
       <ProtectedRoute exact path="/account" component={Profile} />
       <ProtectedRoute exact path="/me/update" component={UpdateProfile} />
       <ProtectedRoute
@@ -72,7 +85,6 @@ function App() {
       <Route exact path="/login" component={LoginSignUp} />
       <Route exact path="/cart" component={Cart} />
       <ProtectedRoute exact path="/shipping" component={Shipping} />
-      
 
       {stripeApiKey && (
         <Elements stripe={loadStripe(stripeApiKey)}>
@@ -84,10 +96,63 @@ function App() {
       <ProtectedRoute exact path="/orders" component={MyOrders} />
 
       <Switch>
-      <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
-      <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
+        <ProtectedRoute exact path="/order/confirm" component={ConfirmOrder} />
+        <ProtectedRoute exact path="/order/:id" component={OrderDetails} />
       </Switch>
-      
+      <ProtectedRoute
+        isAdmin={true}
+        exact
+        path="/admin/dashboard"
+        component={Dashboard}
+      />
+      <ProtectedRoute
+        exact
+        path="/admin/products"
+        isAdmin={true}
+        component={ProductList}
+      />
+      <ProtectedRoute
+        exact
+        path="/admin/product/"
+        isAdmin={true}
+        component={NewProduct}
+      />
+      <ProtectedRoute
+        exact
+        path="/admin/product/:id"
+        isAdmin={true}
+        component={UpdateProduct}
+      />
+      <ProtectedRoute
+        exact
+        path="/admin/orders"
+        isAdmin={true}
+        component={OrderList}
+      />
+      <ProtectedRoute
+        exact
+        path="/admin/order/:id"
+        isAdmin={true}
+        component={ProcessOrder}
+      />
+      <ProtectedRoute
+        exact
+        path="/admin/users"
+        isAdmin={true}
+        component={UsersList}
+      />
+      <ProtectedRoute
+        exact
+        path="/admin/user/:id"
+        isAdmin={true}
+        component={UpdateUser}
+      />
+      <ProtectedRoute
+        exact
+        path="/admin/reviews"
+        isAdmin={true}
+        component={ProductReviews}
+      />
 
       <Footer />
     </Router>

@@ -12,12 +12,14 @@ import { useAlert } from "react-alert";
 const categories = [
   "Desktop",
   "Laptop",
-  "CPU",
+  "Processor",
   "Ram",
+  "MotherBoard",
   "Power Supply",
-  "Hard Disk",
-  "SSD",
+  "Hard Disk (HDD)",
+  "Solid State Drive (SSD)",
   "Graphics Card",
+  "Monitor",
 ];
 
 const Products = ({ match }) => {
