@@ -194,7 +194,7 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
     email: req.body.email,
     role: req.body.role,
   };
-  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+  await User.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
@@ -213,6 +213,9 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
       new ErrorHander(`No user found with this ID: ${req.params.id}`)
     );
   }
+
+  const imageId = user.avatar.public_id;
+  await cloudinary.v2.uploader.destroy(imageId);
   await User.deleteOne({ _id: req.params.id });
 
   res.status(200).json({
