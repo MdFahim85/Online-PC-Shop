@@ -40,7 +40,7 @@ This project was developed through collaborative effort:
 
 ## 🚀 Tech Stack
 
-- **Frontend**: React.js, Redux, Tailwind CSS
+- **Frontend**: React.js, Redux
 - **Backend**: Node.js, Express.js
 - **Database**: MongoDB (Mongoose)
 - **Tools**: Postman, JWT, bcrypt, dotenv
