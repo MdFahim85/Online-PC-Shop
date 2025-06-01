@@ -7,9 +7,9 @@ An e-commerce platform for purchasing computer components. Built with the MERN s
 
 This project was developed through collaborative effort:
 
-- **Md Fahim** – Authentication, frontend layout, user profile features, backend integration
-- **Arabinda Paul Turja** – Cart functionality, user review/order pages, backend routes
-- **Md Asif Hasan** – Redux setup, backend authentication, admin route implementation
+- [**Md Fahim**](https://github.com/MdFahim85) – Authentication, frontend layout, user profile features, backend integration
+- [**Arabinda Paul Turja**](https://github.com/arabindaturja) – Cart functionality, user review/order pages, backend routes
+- [**Md Asif Hasan**](https://github.com/asifhasan007) – Redux setup, backend authentication, admin route implementation
 
 
 ## 📌 Features
